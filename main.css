@@ -26,6 +26,10 @@ img {
     color: #FFF !important;
 }
 
+.nav-pills>li>a:hover {
+    background-color: slateblue !important;
+}
+
 .nav-pills>li>a {
     color: lightgray !important;
 }
@@ -42,4 +46,23 @@ img {
 
 #content a {
     color: rgb(79, 92, 104);
+}
+
+body {
+    font-family: 'Dosis', sans-serif !important;
+}
+
+h1 {
+    font-family: 'Londrina Shadow', cursive !important;
+}
+
+h2 {
+    text-align: center;
+}
+
+.center-pic {
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }
