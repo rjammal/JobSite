@@ -3,11 +3,43 @@
     overflow-y: auto;
 }
 
-h1 {
-    padding-top: 50px;
+.text-body {
+    font-size: 30px;
+    text-align: center;
+    padding-left: 60px;
+    padding-right: 120px;
 }
 
-/*#main-nav {
-    position: absolute;
-    width: 100%
-}*/
+img {
+    width: 100%;
+    height: auto;
+}
+
+#story {
+    font-size: 20px;
+}
+
+.nav-pills>li.active>a, 
+.nav-pills>li.active>a:hover, 
+.nav-pills>li.active>a:focus {
+    background-color: blueviolet !important;
+    color: #FFF !important;
+}
+
+.nav-pills>li>a {
+    color: lightgray !important;
+}
+
+#nav-container {
+    height: 100%;
+    background-color: black;
+    padding-right: 0px;
+}
+
+#content {
+    color: rgb(79, 92, 104);
+}
+
+#content a {
+    color: rgb(79, 92, 104);
+}

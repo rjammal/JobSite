@@ -6,12 +6,12 @@
 </head>
 <body data-target="#content" >
 <div class="row">
-    <div class="col-xs-2">
+    <div class="col-xs-2" id="nav-container">
         <nav id="main-nav" class="side-navbar navbar" role="navigation">
             <ul class="nav nav-pills nav-stacked">
                 <li><a href="#intro">Intro</a></li>
                 <li><a href="#projects">Projects</a></li>
-                <li><a href="#about">About Me</a></li>
+                <li><a href="#about">My Story</a></li>
                 <li><a href="#contact">Contact Me</a></li>
             </ul>
         </nav>
@@ -20,20 +20,57 @@
     <div id="content" class="col-xs-10" data-spy="scroll">
         <h1 id="intro">Intro</h1>
 
-        I am a web developer with experience in Backbone and Ruby on Rails. 
-
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <div class="text-body">
+            <p>
+                I am a web developer with experience using Backbone and Ruby on Rails. I've also worked on local applications using C# and SQL. 
+            </p>
+            <p>
+                I'm a gaming enthusiast, especially of the tabletop variety. When I want to get out of the house, I also enjoy rock climbing.
+            </p>
+        </div>
 
         <h1 id="projects">Projects</h1>
+            <div class="col-xs-4">
+                <a href="http://rabble-reviews.com">
+                    <img src="rabble-reviews.png">Rabble: Game Reviews by the Masses
+                </a>
+            </div>
 
-        <a href="http://rabble-reviews.com">Rabble: Game Reviews by the Masses</a>
+            <div class="col-xs-4">
+                <a href="asteroids/index.html">
+                    <img src="asteroids.png">Asteroids
+                </a>
+            </div>
 
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            <div class="col-xs-4">
+                <a href="http://www.codeskulptor.org/#user24_kzfXlpr3kz9mUas_11.py">
+                    <img id="platform-jumper" src="platform-jumper.png">An Homage to the Platform Jumper
+                </a>
+            </div>
 
-        <h1 id="about">About Me</h1>
 
-        Testing with some whitespace
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <h1 id="about">My Story</h1>
+
+        <div class="text-body" id="story">
+            <p>
+                Ever since my first computer science class in college, I've been interested in programming, but I wasn't sure at first that it was what I wanted to do full time. I had to try a few different fields first (linguistics, cognitive science, education, finance) to see what my options were.
+            </p>
+            <p>
+                The real turning point in my life was when I started working at Advent Software. It was my gateway back in to the tech industry. I started in technical support, and I loved it. Each day was a new problem to solve, a new part of the software to learn, a new deliverable that a client needed for their business. I was responsible for keeping the software running in high uptime enterprise environments, solving and proving out complex calculations, finding and correcting bad data, and much more. I loved the challenge and the variety, and I rose in the ranks from junior support representative, to senior, to analyst within the first two years. 
+            </p>
+            <p>
+                I rose quickly, but I also found myself levelling out. My day to day became more and more routine and less and less challenging. Needing something more engaging, I signed up for an introductory Python course on Coursera. It was during that course that I realized that programming was more than just a hobby; this was what I wanted to be doing all day every day. 
+            </p>
+            <p>
+                Even after the course concluded, I continued to practice and work on coding with any free time I had. I started attending meetups and became a leader in the Women Who Code organization, hosting a weekly Python meetup for about a year. I also negotiated with my employer to work part time with our development staff. I worked with C# as a full stack engineer, creating software vital to our QA. I added several features to our internal testing software that helped automate and streamline the testing process. 
+            </p>
+            <p>
+                I loved my work at Advent, but I found myself torn by the part time nature of the work. I wanted to be coding full time, but there just wasn't headcount to move me the rest of the way. I was sad to leave, but in the end, I had to leave Advent so I could pursue programming as a full time profession. That was when I started at AppAcademy. 
+            </p>
+            <p>
+                AppAcademy allowed me to pour myself into programming full time. I finally got to program all day without having to stop. That was a big step up, but I also found myself missing the direction and purpose of being on a team with a common goal and concrete deliverables. Right now, I'm eager to jump into a new team and start work on a new project. 
+            </p>
+        </div>
 
         <h1 id="contact">Contact Me</h1>
         <br><br><br><br><br><br><br><br>
@@ -44,12 +81,11 @@
 
 <script type="text/javascript" src="jquery.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-
 <script type="text/javascript">
-    // $('#content').scrollspy({
-    //     target: "#main-navbar", 
-    //     offset: "50"
-    // });
+    $("#platform-jumper").click(function () {
+        alert("Hit the play button in the top left to play the game!");
+    })
 </script>
+
 </body>
 </html>
