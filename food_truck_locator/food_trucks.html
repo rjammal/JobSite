@@ -4,20 +4,21 @@
 src="https://www.google.com/maps/embed/v1/search?key=AIzaSyDA_7tzee1bTUITMK4aMnGwNpyDPCfXoL8&zoom=16&center=37.7760%2C-122.4182&q=food+truck"></iframe> -->
 <script type="text/javascript" src="/Users/smkusalo/Documents/JavaScript/lib/jquery.js"></script>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="main.css">
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDA_7tzee1bTUITMK4aMnGwNpyDPCfXoL8"></script>
 
 <div>
 
-<div id="food-items" style="overflow-y:auto;overflow-x:hidden;height:100%;z-index:0;position:absolute;">
+<div id="food-items">
 <form>
-<div class="form-group"  id="food-truck-types">
 <label>Food Truck Types</label></br>
 <input type="checkbox" id="check-all">Check All<br>
+<div class="form-group"  id="food-truck-types">
 </div>
 </form>
 </div>
 
-<div id="map" style="height:100%;z-index:10;border-left:thin solid black;" class="col-xs-9 col-xs-offset-3"></div>
+<div id="map" class="col-xs-9 col-xs-offset-3"></div>
 
 </div>
 
@@ -42,6 +43,9 @@ $(function () {
             var foodTypes = {};
             for (var i = 0; i < data.length; i++) {
                 var truck = data[i];
+                if (truck.fooditems === undefined) {
+                    continue;
+                }
                 var position = new google.maps.LatLng(truck.latitude, truck.longitude);
                 var marker = new google.maps.Marker({
                     map: map,
@@ -75,15 +79,32 @@ $(function () {
 
             $foodTypes = $("#food-truck-types");
             foodArray.forEach( function (food, i) {
-                if (foodTypes[food].some( function (mark) {
-                    // debugger
+                var $div = $('<div>').html(
+                    '<input type="checkbox" name="food-type" value="' + i + '">' + 
+                    '<span>' + food + '</span>');
+                $foodTypes.append($div);
+                $div.addClass("food");
+                if (!foodTypes[food].some( function (mark) {
                     return map.getBounds().contains(mark.getPosition());
                 })) {
-                    $foodTypes.append('<input type="checkbox" class="food" name="food-type" value="' + i + '">' + food + '<br>');
+                    $div.addClass("hide-description");
                 }
             });
 
-            $(".food").click( function (event) {
+            google.maps.event.addListener(map, "bounds_changed", function () {
+                $foodTypes.children().each( function (i, el) {
+                    $div = $(el);
+                    if (foodTypes[foodArray[i]].some( function (mark) {
+                        return map.getBounds().contains(mark.getPosition());
+                    })) {
+                        $div.removeClass("hide-description");
+                    } else {
+                        $div.addClass("hide-description");
+                    }
+                });
+            });
+
+            $(".food input").click( function (event) {
                 var $food = $(event.currentTarget);
                 var index = $food.attr("value");
                 var markerLookup = foodArray[index];

@@ -1,0 +1,20 @@
+
+.hide-description {
+    height: 0px;
+    overflow: hidden;
+    transition: all 1s ease 0;
+}
+
+#food-items {
+    overflow-y:auto;
+    overflow-x:hidden;
+    height:100%;
+    z-index:0;
+    position:absolute;
+}
+
+#map {
+     height:100%;
+     z-index:10;
+     border-left:thin solid black;
+}
