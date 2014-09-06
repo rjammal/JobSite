@@ -1,0 +1,100 @@
+<div id="search"></div>
+
+<!-- <iframe width="600" height="450" frameborder="0" style="border:0"
+src="https://www.google.com/maps/embed/v1/search?key=AIzaSyDA_7tzee1bTUITMK4aMnGwNpyDPCfXoL8&zoom=16&center=37.7760%2C-122.4182&q=food+truck"></iframe> -->
+<script type="text/javascript" src="/Users/smkusalo/Documents/JavaScript/lib/jquery.js"></script>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDA_7tzee1bTUITMK4aMnGwNpyDPCfXoL8"></script>
+
+<div>
+
+<div id="food-items" style="overflow-y:auto;overflow-x:hidden;height:100%;z-index:0;position:absolute;">
+<form>
+<div class="form-group"  id="food-truck-types">
+<label>Food Truck Types</label></br>
+<input type="checkbox" id="check-all">Check All<br>
+</div>
+</form>
+</div>
+
+<div id="map" style="height:100%;z-index:10;border-left:thin solid black;" class="col-xs-9 col-xs-offset-3"></div>
+
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var mapOptions = {
+        center: new google.maps.LatLng(37.7760, -122.4182),
+        zoom: 16
+    };
+
+    var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+    google.maps.event.addListenerOnce(map, 'idle', function(){
+
+    $.ajax("http://data.sfgov.org/resource/rqzj-sfat.json", {
+        dataType: "json",
+        url: "http://data.sfgov.org/resource/rqzj-sfat.json",
+        // beforeSend: function () {
+        //     map = new google.maps.Map(document.getElementById("map"), mapOptions);
+        // },
+        success: function (data) {
+            var foodTypes = {};
+            for (var i = 0; i < data.length; i++) {
+                var truck = data[i];
+                var position = new google.maps.LatLng(truck.latitude, truck.longitude);
+                var marker = new google.maps.Marker({
+                    map: map,
+                    position: position, 
+                    visible: false
+                });
+                var infowindow = new google.maps.InfoWindow({
+                    content: truck.applicant
+                });
+
+                google.maps.event.addListener(marker, 'click', (function (iwindow, mark) {
+                    return function () {
+                        iwindow.open(map, mark);
+                    }
+                })(infowindow, marker));
+
+                // use hash to find markers
+                if (foodTypes[truck.fooditems]) {
+                    foodTypes[truck.fooditems].push(marker);
+                } else {
+                    foodTypes[truck.fooditems] = [marker];
+                }
+            }
+
+            // use array to sort
+            var foodArray = [];
+            for (var food in foodTypes) {
+                foodArray.push(food);
+            }
+            foodArray.sort();
+
+            $foodTypes = $("#food-truck-types");
+            foodArray.forEach( function (food, i) {
+                if (foodTypes[food].some( function (mark) {
+                    // debugger
+                    return map.getBounds().contains(mark.getPosition());
+                })) {
+                    $foodTypes.append('<input type="checkbox" class="food" name="food-type" value="' + i + '">' + food + '<br>');
+                }
+            });
+
+            $(".food").click( function (event) {
+                var $food = $(event.currentTarget);
+                var index = $food.attr("value");
+                var markerLookup = foodArray[index];
+                foodTypes[markerLookup].forEach( function (mark) {
+                    mark.setVisible(!mark.getVisible());
+                });
+            });
+        }
+    });
+    });
+
+    
+});
+</script>
