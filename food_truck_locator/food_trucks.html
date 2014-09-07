@@ -53,6 +53,7 @@ $(function () {
                 var infowindow = new google.maps.InfoWindow({
                     content: contentString
                 });
+                marker.iwindow = infowindow;
 
                 google.maps.event.addListener(marker, 'click', (function (iwindow, mark) {
                     return function () {
@@ -111,7 +112,11 @@ $(function () {
                 var index = $food.attr("value");
                 var markerLookup = foodArray[index];
                 foodTypes[markerLookup].forEach( function (mark) {
-                    mark.setVisible($food.prop("checked"));
+                    var checked = $food.prop("checked");
+                    mark.setVisible(checked);
+                    if (!checked) {
+                        mark.iwindow.close();
+                    }
                 });
             });
         }
