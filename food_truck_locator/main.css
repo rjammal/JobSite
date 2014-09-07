@@ -1,20 +1,38 @@
 
+.food {
+    height: 0px;
+    overflow-x: hidden;
+    white-space: nowrap;
+}
+
+.show-description {
+    height: 20px;
+    opacity: 1;
+    -webkit-transition: all 1s ease 0s;
+    -moz-transition: all 1s ease 0s;
+    -o-transition: all 1s ease 0s;
+    transition: all 1s ease 0s;
+}
+
 .hide-description {
     height: 0px;
-    overflow: hidden;
-    transition: all 1s ease 0;
+    opacity: 0;
+    -webkit-transition: all 1s ease 0s;
+    -moz-transition: all 1s ease 0s;
+    -o-transition: all 1s ease 0s;
+    transition: all 1s ease 0s;
 }
 
 #food-items {
-    overflow-y:auto;
-    overflow-x:hidden;
-    height:100%;
-    z-index:0;
-    position:absolute;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 100%;
+    z-index: 0;
+    position: absolute;
 }
 
 #map {
-     height:100%;
-     z-index:10;
-     border-left:thin solid black;
+     height: 100%;
+     z-index: 10;
+     border-left: thin solid black;
 }

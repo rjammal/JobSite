@@ -36,9 +36,6 @@ $(function () {
     $.ajax("http://data.sfgov.org/resource/rqzj-sfat.json", {
         dataType: "json",
         url: "http://data.sfgov.org/resource/rqzj-sfat.json",
-        // beforeSend: function () {
-        //     map = new google.maps.Map(document.getElementById("map"), mapOptions);
-        // },
         success: function (data) {
             var foodTypes = {};
             for (var i = 0; i < data.length; i++) {
@@ -84,9 +81,11 @@ $(function () {
                     '<span>' + food + '</span>');
                 $foodTypes.append($div);
                 $div.addClass("food");
-                if (!foodTypes[food].some( function (mark) {
+                if (foodTypes[food].some( function (mark) {
                     return map.getBounds().contains(mark.getPosition());
                 })) {
+                    $div.addClass("show-description")
+                } else {
                     $div.addClass("hide-description");
                 }
             });
@@ -97,8 +96,10 @@ $(function () {
                     if (foodTypes[foodArray[i]].some( function (mark) {
                         return map.getBounds().contains(mark.getPosition());
                     })) {
+                        $div.addClass("show-description");
                         $div.removeClass("hide-description");
                     } else {
+                        $div.removeClass("show-description");
                         $div.addClass("hide-description");
                     }
                 });
