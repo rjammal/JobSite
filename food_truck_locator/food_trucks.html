@@ -110,7 +110,7 @@ $(function () {
                 var index = $food.attr("value");
                 var markerLookup = foodArray[index];
                 foodTypes[markerLookup].forEach( function (mark) {
-                    mark.setVisible(!mark.getVisible());
+                    mark.setVisible($food.prop("checked"));
                 });
             });
         }
