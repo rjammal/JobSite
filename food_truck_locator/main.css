@@ -1,7 +1,7 @@
 #food-items {
     color: darkslategrey;
-    width: 100%;
     background-color: #F5F5F5;
+    padding-right: 0px;
 }
 
 #select-deselect {
@@ -11,11 +11,15 @@
 .food {
     height: 0px;
     overflow: hidden;
-    white-space: nowrap;
+    padding-left: 15px;
+}
+
+.title {
+    font-weight: bold;
 }
 
 .show-description {
-    height: 20px;
+    height: 22px;
     opacity: 1;
     -webkit-transition: all 1s ease 0s;
     -moz-transition: all 1s ease 0s;
@@ -34,21 +38,23 @@
 
 #food-items {
     overflow-y: auto;
-    overflow-x: hidden;
     height: 100%;
-    z-index: 0;
-    position: absolute;
+    padding: 0px;
+    margin: 0px;
 }
 
 label {
     width: 100%;
     border-bottom: thin solid black;
-    padding: 5px;
+    padding-top: 5px;
+    padding-left: 20px;
     font-size: 30px;
 }
 
 #description {
     color: lightslategrey;
+    padding-top: 5px;
+    padding-left: 15px;
 }
 
 #food-items input {
@@ -57,6 +63,9 @@ label {
 
 #map {
      height: 100%;
-     z-index: 10;
      border-left: thin solid black;
+}
+
+#check-all {
+    margin-left: 20px !important;
 }

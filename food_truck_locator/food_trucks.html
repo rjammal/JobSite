@@ -7,20 +7,20 @@
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDA_7tzee1bTUITMK4aMnGwNpyDPCfXoL8"></script>
 </head>
 <body>
-
-<div id="food-items">
+<div>
+<div id="food-items" class="col-xs-3">
 <form>
 <label>SF Food Trucks</label></br>
-<div id="description" class="col-xs-3">Check the type of food to see its location on the map. Move the map to see more options.</div>
-<br>
-<br>
+<div id="description">Check the name of the truck to see its location on the map. Move the map to see more options.</div>
+
 <div><input type="checkbox" id="check-all"><span id="select-deselect">Check All</span></div>
 <div class="form-group"  id="food-truck-types">
 </div>
 </form>
 </div>
 
-<div id="map" class="col-xs-9 col-xs-offset-3"></div>
+<div id="map" class="col-xs-9"></div>
+</div>
 
 <script type="text/javascript">
 $(function () {
@@ -49,8 +49,9 @@ $(function () {
                     position: position, 
                     visible: false
                 });
+                var contentString = '<span class="title">' + truck.applicant + ": </span>" + truck.fooditems;
                 var infowindow = new google.maps.InfoWindow({
-                    content: truck.applicant
+                    content: contentString
                 });
 
                 google.maps.event.addListener(marker, 'click', (function (iwindow, mark) {
@@ -60,10 +61,10 @@ $(function () {
                 })(infowindow, marker));
 
                 // use hash to find markers
-                if (foodTypes[truck.fooditems]) {
-                    foodTypes[truck.fooditems].push(marker);
+                if (foodTypes[truck.applicant]) {
+                    foodTypes[truck.applicant].push(marker);
                 } else {
-                    foodTypes[truck.fooditems] = [marker];
+                    foodTypes[truck.applicant] = [marker];
                 }
             }
 
