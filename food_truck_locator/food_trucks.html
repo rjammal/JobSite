@@ -11,7 +11,10 @@ src="https://www.google.com/maps/embed/v1/search?key=AIzaSyDA_7tzee1bTUITMK4aMnG
 
 <div id="food-items">
 <form>
-<label>Food Truck Types</label></br>
+<label>SF Food Trucks</label></br>
+<div id="description" class="col-xs-3">Check the type of food to see its location on the map. Move the map to see more options.</div>
+<br>
+<br>
 <div><input type="checkbox" id="check-all"><span id="select-deselect">Check All</span></div>
 <div class="form-group"  id="food-truck-types">
 </div>
@@ -124,7 +127,6 @@ $(function () {
         } else {
             $(".food input").prop("checked", false).trigger("change");
             $("#select-deselect").text("Check All");
-
         }
     });
     

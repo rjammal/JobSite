@@ -1,7 +1,16 @@
+#food-items {
+    color: darkslategrey;
+    width: 100%;
+    background-color: #F5F5F5;
+}
+
+#select-deselect {
+    font-weight: bold;
+}
 
 .food {
     height: 0px;
-    overflow-x: hidden;
+    overflow: hidden;
     white-space: nowrap;
 }
 
@@ -29,6 +38,21 @@
     height: 100%;
     z-index: 0;
     position: absolute;
+}
+
+label {
+    width: 100%;
+    border-bottom: thin solid black;
+    padding: 5px;
+    font-size: 30px;
+}
+
+#description {
+    color: lightslategrey;
+}
+
+#food-items input {
+    margin: 5px;
 }
 
 #map {
