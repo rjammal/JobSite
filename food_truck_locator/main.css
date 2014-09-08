@@ -1,8 +1,3 @@
-#food-items {
-    color: darkslategrey;
-    background-color: #F5F5F5;
-    padding-right: 0px;
-}
 
 #select-deselect {
     font-weight: bold;
@@ -14,8 +9,16 @@
     padding-left: 15px;
 }
 
+span {
+    font-weight: normal;
+}
+
 .title {
     font-weight: bold;
+}
+
+#check-label {
+    padding-top: 2px;
 }
 
 .show-description {
@@ -41,14 +44,18 @@
     height: 100%;
     padding: 0px;
     margin: 0px;
+    color: darkslategrey;
+    background-color: #F5F5F5;
+    padding-right: 0px;
 }
 
-label {
+#title {
     width: 100%;
     border-bottom: thin solid black;
     padding-top: 5px;
     padding-left: 20px;
     font-size: 30px;
+    font-weight: bold;
 }
 
 #description {

@@ -10,11 +10,11 @@
 <div>
 <div id="food-items" class="col-xs-3">
 <form>
-<label>SF Food Trucks</label></br>
+<div id="title">SF Food Trucks</div>
 <div id="description">Check the name of the truck to see its location on the map. Move the map to see more options.</div>
 
-<div><input type="checkbox" id="check-all"><span id="select-deselect">Check All</span></div>
-<div class="form-group"  id="food-truck-types">
+<div><label id="check-label"><input type="checkbox" id="check-all"><span id="select-deselect">Check All</span></label></div>
+<div id="food-truck-types">
 </div>
 </form>
 </div>
@@ -79,8 +79,8 @@ $(function () {
             $foodTypes = $("#food-truck-types");
             foodArray.forEach( function (food, i) {
                 var $div = $('<div>').html(
-                    '<input type="checkbox" name="food-type" value="' + i + '">' + 
-                    '<span>' + food + '</span>');
+                    '<label><input type="checkbox" name="food-type" value="' + i + '">' + 
+                    '<span>' + food + '</span></label>');
                 $foodTypes.append($div);
                 $div.addClass("food");
                 if (foodTypes[food].some( function (mark) {
