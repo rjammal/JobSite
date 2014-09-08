@@ -37,7 +37,8 @@ $(function () {
         dataType: "json",
         url: "http://data.sfgov.org/resource/rqzj-sfat.json",
         success: function (data) {
-            var foodTypes = {};
+            var foodMarkers = {};
+            var foodDescription = {}
             for (var i = 0; i < data.length; i++) {
                 var truck = data[i];
                 if (truck.fooditems === undefined) {
@@ -61,29 +62,32 @@ $(function () {
                     }
                 })(infowindow, marker));
 
+                // use truck name to find description
+                foodDescription[truck.applicant] = truck.fooditems;
+
                 // use hash to find markers
-                if (foodTypes[truck.applicant]) {
-                    foodTypes[truck.applicant].push(marker);
+                if (foodMarkers[truck.applicant]) {
+                    foodMarkers[truck.applicant].push(marker);
                 } else {
-                    foodTypes[truck.applicant] = [marker];
+                    foodMarkers[truck.applicant] = [marker];
                 }
             }
 
             // use array to sort
             var foodArray = [];
-            for (var food in foodTypes) {
+            for (var food in foodMarkers) {
                 foodArray.push(food);
             }
             foodArray.sort();
 
             $foodTypes = $("#food-truck-types");
-            foodArray.forEach( function (food, i) {
+            foodArray.forEach( function (business, i) {
                 var $div = $('<div>').html(
-                    '<label><input type="checkbox" name="food-type" value="' + i + '">' + 
-                    '<span>' + food + '</span></label>');
+                    '<label title="' + foodDescription[business] + '"><input type="checkbox" name="food-type" value="' + i + '">' + 
+                    '<span>' + business + '</span></label>');
                 $foodTypes.append($div);
                 $div.addClass("food");
-                if (foodTypes[food].some( function (mark) {
+                if (foodMarkers[business].some( function (mark) {
                     return map.getBounds().contains(mark.getPosition());
                 })) {
                     $div.addClass("show-description")
@@ -95,7 +99,7 @@ $(function () {
             google.maps.event.addListener(map, "bounds_changed", function () {
                 $foodTypes.children().each( function (i, el) {
                     $div = $(el);
-                    if (foodTypes[foodArray[i]].some( function (mark) {
+                    if (foodMarkers[foodArray[i]].some( function (mark) {
                         return map.getBounds().contains(mark.getPosition());
                     })) {
                         $div.addClass("show-description");
@@ -107,11 +111,15 @@ $(function () {
                 });
             });
 
+            $(".food label").mouseover(function (event) {
+                var $food = $(event.currentTarget);
+            });
+
             $(".food input").change( function (event) {
                 var $food = $(event.currentTarget);
                 var index = $food.attr("value");
                 var markerLookup = foodArray[index];
-                foodTypes[markerLookup].forEach( function (mark) {
+                foodMarkers[markerLookup].forEach( function (mark) {
                     var checked = $food.prop("checked");
                     mark.setVisible(checked);
                     if (!checked) {
