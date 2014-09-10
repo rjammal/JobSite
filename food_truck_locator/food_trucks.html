@@ -19,6 +19,20 @@
 </form>
 </div>
 
+<div id="search" class="col-xs-9">
+    <form id="search-form">
+        <div class="col-xs-11" id="search-text-container">
+            <input 
+                class="form-control"
+                type="text" 
+                id="search-text"
+                value=""
+                placeholder="Search for a location in SF">
+        </div>
+        <button class="btn btn-primary col-xs-1" id="search-button">Search</button>
+    </form>
+</div>
+
 <div id="map" class="col-xs-9"></div>
 </div>
 
@@ -124,6 +138,29 @@ $(function () {
                     mark.setVisible(checked);
                     if (!checked) {
                         mark.iwindow.close();
+                    }
+                });
+            });
+
+            var geoBounds = new google.maps.LatLngBounds(
+                new google.maps.LatLng(37.707060, -122.507810), // southwest
+                new google.maps.LatLng(37.821053, -122.355718)  // northeast
+            );
+
+            $("#search-button").click( function (event) {
+                event.preventDefault();
+                var geocoder = new google.maps.Geocoder();
+                var searchText = document.getElementById("search-text").value;
+                geocoder.geocode({
+                    address: searchText, 
+                    bounds: geoBounds
+                }, function (results, status) {
+                    if (status === google.maps.GeocoderStatus.OK) {
+                        map.setCenter(results[0].geometry.location);
+                        map.setZoom(15);
+                    } else {
+                        map.setCenter(new google.maps.LatLng(37.7760, -122.4182));
+                        map.setZoom(16);
                     }
                 });
             });

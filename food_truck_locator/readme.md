@@ -13,6 +13,7 @@ Currently, the app loads all data into memory and iterates through all the data 
 Features
 --------
 
+* Search within San Francisco to re-center the map
 * Only shows food trucks visible within the current map screen and fluidly reupdates as the map is moved
 * Selecting the food you want displays matching locations on the map
 * Markers on map open dialog boxes describing the truck
@@ -34,4 +35,3 @@ Future Feature Roadmap
 ----------------------
 
 * Data from additional cities
-* Ability to center the map on a specific, searchable address

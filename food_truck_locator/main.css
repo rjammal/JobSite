@@ -76,3 +76,25 @@ span {
 #check-all {
     margin-left: 20px !important;
 }
+
+/*Search Form*/
+#search {
+    padding: 0px;
+    border-left: thin solid black;
+}
+
+#search-form {
+    padding: 0px;
+}
+
+#search-text-container {
+    padding: 0px;
+}
+
+#search-text {
+    border-radius: 0px;
+}
+
+#search-button {
+    border-radius: 0px;
+}
