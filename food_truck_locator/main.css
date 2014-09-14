@@ -94,6 +94,7 @@ span {
     padding: 0px;
     border-left: thin solid black;
     height: 34px;
+    z-index: 10;
 }
 
 #search-form {
